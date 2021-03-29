@@ -1,5 +1,5 @@
 <template>
-  <el-row :gutter="20" id="header">
+  <el-row :gutter="20">
     <el-col :span="4">
       <user></user>
     </el-col>
@@ -35,8 +35,12 @@ export default {
 <style lang="less" scoped>
 .el-row {
   height: 10vh;
+  width: 100%;
   background-image: url('src/assets/image/header-1.png');
   background-color: #267aec;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  border-radius: 2px;
   .el-col{
     height: 100%;
     display: flex;
