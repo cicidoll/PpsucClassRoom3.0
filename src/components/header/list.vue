@@ -18,8 +18,8 @@ export default {
 
 <style lang="less" scoped>
 .list{
-  height: 3vh;
-  width: 3vh;
+  height: 2vh;
+  width: 2vh;
   display: flex;
   align-items: center;
   justify-content: start;

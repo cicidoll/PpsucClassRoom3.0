@@ -34,7 +34,7 @@ export default {
 
 <style lang="less" scoped>
 .el-row {
-  height: 10vh;
+  height: 7vh;
   width: 100%;
   background-image: url('src/assets/image/header-1.png');
   background-color: #267aec;

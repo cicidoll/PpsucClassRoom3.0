@@ -26,9 +26,9 @@ export default {
   align-items: center;
   padding-left: 5vw;
   a{
-    height: 6vh;
-    width: 6vh;
-    border-radius: 3vh;
+    height: 4vh;
+    width: 4vh;
+    border-radius: 2vh;
     overflow: hidden;
     margin: 0 auto;
     img{

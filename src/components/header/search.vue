@@ -20,7 +20,7 @@ export default {
 <style lang="less" scoped>
 .search{
   width: 100%;
-  height: 6vh;
+  height: 4vh;
   border-bottom-left-radius: 3vh;
   border-bottom-right-radius: 3vh;
   border-top-left-radius: 3vh;
@@ -30,9 +30,9 @@ export default {
   align-items: center;
   justify-content: start;
   img{
-    height: 3vh;
-    width: 3vh;
-    margin-left: 3vh;
+    height: 2vh;
+    width: 2vh;
+    margin-left: 2vh;
   }
   span{
     font-size: 12px;
