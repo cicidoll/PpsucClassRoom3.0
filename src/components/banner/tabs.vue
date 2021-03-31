@@ -11,18 +11,21 @@
 
 </template>
 <script>
-  export default {
-    data() {
-      return {
-        activeName: 'second'
-      };
-    },
-    methods: {
-      handleClick(tab, event) {
-        console.log(tab, event);
-      }
+import dataStore from '../../store/dataStore.js'
+
+export default {
+  data() {
+    return {
+      activeName: dataStore.state.day
     }
-  };
+  },
+  methods: {
+    handleClick(tab, event) {
+      dataStore.setAction('day', this.activeName)
+      // console.log(dataStore.state.day)
+    }
+  }
+};
 </script>
 
 <style lang="less">
@@ -61,5 +64,4 @@
     }
   }
 }
-
 </style>
