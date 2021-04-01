@@ -11,18 +11,18 @@
 
 </template>
 <script>
-import dataStore from '../../store/dataStore.js'
+import dataFlagStore from '../../store/dataFlagStore.js'
 
 export default {
   data() {
     return {
-      activeName: dataStore.state.day
+      activeName: dataFlagStore.state.day
     }
   },
   methods: {
     handleClick(tab, event) {
-      dataStore.setAction('day', this.activeName)
-      // console.log(dataStore.state.day)
+      dataFlagStore.setAction('day', this.activeName)
+      // console.log(dataFlagStore.state.day)
     }
   }
 };

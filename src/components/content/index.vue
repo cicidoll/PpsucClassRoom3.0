@@ -1,7 +1,7 @@
 <template>
   <div class="index">
     <building></building>
-    <box style="height: 200px;"></box>
+    <box></box>
   </div>
 </template>
 
@@ -25,9 +25,9 @@ export default {
 
 <style lang="less" scoped>
 .index{
-  height: 90vh;
-  width: 100%;
-  background-color: pink;
-  
+  height: 80vh;
+  padding: 5px;
+  padding-top: 0px;
+  border-radius: 4px;
 }
 </style>

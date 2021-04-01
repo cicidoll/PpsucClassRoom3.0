@@ -1,20 +1,20 @@
 <template>
   <div class="buildingTabs">
     <el-tabs v-model="dataName" @tab-click="handleClick">
-      <el-tab-pane label="西配楼" name="first"></el-tab-pane>
-      <el-tab-pane label="中楼" name="second"></el-tab-pane>
-      <el-tab-pane label="铸剑楼" name="third"></el-tab-pane>
+      <el-tab-pane label="西配楼" name="XiPei"></el-tab-pane>
+      <el-tab-pane label="中楼" name="zhongLou"></el-tab-pane>
+      <el-tab-pane label="铸剑楼" name="zhuJian"></el-tab-pane>
     </el-tabs>
   </div>
 </template>
 
 <script>
-import dataStore from '../../store/dataStore.js'
+import dataFlagStore from '../../store/dataFlagStore.js'
 
 export default {
   data () {
     return {
-      dataName: dataStore.state.building
+      dataName: dataFlagStore.state.building
     }
   }, 
   methods: {
@@ -23,7 +23,7 @@ export default {
       // console.log('handleClick'+tab.props.name)
       // this.dataName = tab.props.name
       // this.sendMsgToParent()
-      dataStore.setAction('building', this.dataName)
+      dataFlagStore.setAction('building', this.dataName)
     }
     // sendMsgToParent() { 
     //   //1.子组件通过子定义事件child-msg的方式将msg传给父组件
@@ -36,10 +36,9 @@ export default {
 
 <style lang="less">
 .buildingTabs{
-  padding: 5px;
+  background-color: #fff;
+  border-radius: 4px;
   .el-tabs.el-tabs--top{
-    border-radius: 4px;
-    background-color: rgba(226, 216, 216, 0.781);
     .el-tabs__header.is-top {
       margin-bottom: 0px !important;
       .el-tabs__nav-wrap.is-top{

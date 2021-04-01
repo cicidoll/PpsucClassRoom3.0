@@ -1,9 +1,9 @@
-const dataStore = {
+const roomDayDataStore = {
   debug: false,
   state: {
-    day: 'first',
-    building: 'first',
-    time: 'am12'
+    allRoomAllDayData: {},
+    roomAllDayData: {'am12': [], 'am34': [], 'pm12': [], 'pm34': []},
+    roomData: {'am12': [], 'am34': [], 'pm12': [], 'pm34': []},
   },
   setAction (key, newValue) {
     if (this.debug) {
@@ -19,4 +19,4 @@ const dataStore = {
   }
 }
 
-export default dataStore
+export default roomDayDataStore

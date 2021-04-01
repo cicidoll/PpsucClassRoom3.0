@@ -1,6 +1,6 @@
 <template>
   <div class="index">
-    <el-carousel>
+    <el-carousel :interval="6000" arrow="never">
       <el-carousel-item v-for="ImgItem in ImgList" :key="ImgItem.id">
         <img :src='ImgItem.url' alt="">
       </el-carousel-item>
@@ -35,13 +35,19 @@ export default {
     margin-top: 0.5vh;
     border-radius: 4px;
     .el-carousel__container{
-      height: 100%;
-    }
-    img{
-      display: inline-block;
-      height: auto;
-      max-width: 100%;
+      .el-carousel__item{
+        height: 20vh;
+        display: flex;
+        justify-content: center;
+      }
     }
   }
+
+}
+</style>
+
+<style lang="less" scoped>
+/deep/.el-carousel__container{
+  height: 20vh;
 }
 </style>
