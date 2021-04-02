@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="box">
     <left-tabs></left-tabs>
     <list></list>
   </div>
@@ -18,7 +18,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-div:nth-child(1){
+.box{
   display: flex;
+  height: calc(100% - 40px);
 }
 </style>

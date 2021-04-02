@@ -12,31 +12,23 @@
 import dataFlagStore from '../../store/dataFlagStore.js'
 
 export default {
-  data () {
-    return {
-      dataName: dataFlagStore.state.building
+  setup () {
+    const dataName = dataFlagStore.state.building
+
+    return{
+      dataName
     }
-  }, 
+  },
   methods: {
     handleClick(tab) {
-      // console.log(tab.props.name);
-      // console.log('handleClick'+tab.props.name)
-      // this.dataName = tab.props.name
-      // this.sendMsgToParent()
       dataFlagStore.setAction('building', this.dataName)
     }
-    // sendMsgToParent() { 
-    //   //1.子组件通过子定义事件child-msg的方式将msg传给父组件
-    //   console.log('sendMsgToParent'+this.dataName)
-    //   this.$emit('child-msg', this.dataName)
-    // }
   }
 }
 </script>
 
 <style lang="less">
 .buildingTabs{
-  background-color: #fff;
   border-radius: 4px;
   .el-tabs.el-tabs--top{
     .el-tabs__header.is-top {

@@ -15,10 +15,13 @@
 import dataFlagStore from '../../store/dataFlagStore.js'
 
 export default {
-  data() {
+  setup() {
+    const tabPosition = 'left'
+    const date = dataFlagStore.state.time
+
     return {
-      tabPosition: 'left',
-      date: dataFlagStore.state.time
+      tabPosition,
+      date
     }
   },
   methods: {

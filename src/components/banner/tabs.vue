@@ -1,11 +1,11 @@
 <template>
   <div class="bannerTabs">
     <el-tabs v-model="activeName" @tab-click="handleClick">
-      <el-tab-pane label="周一" name="first"></el-tab-pane>
-      <el-tab-pane label="周二" name="second"></el-tab-pane>
-      <el-tab-pane label="周三" name="third"></el-tab-pane>
-      <el-tab-pane label="周四" name="fourth"></el-tab-pane>
-      <el-tab-pane label="周五" name="fifth"></el-tab-pane>
+      <el-tab-pane label="周一" name="1"></el-tab-pane>
+      <el-tab-pane label="周二" name="2"></el-tab-pane>
+      <el-tab-pane label="周三" name="3"></el-tab-pane>
+      <el-tab-pane label="周四" name="4"></el-tab-pane>
+      <el-tab-pane label="周五" name="5"></el-tab-pane>
     </el-tabs>
   </div>
 
@@ -14,9 +14,11 @@
 import dataFlagStore from '../../store/dataFlagStore.js'
 
 export default {
-  data() {
-    return {
-      activeName: dataFlagStore.state.day
+  setup () {
+    const activeName = dataFlagStore.state.day
+
+    return{
+      activeName
     }
   },
   methods: {

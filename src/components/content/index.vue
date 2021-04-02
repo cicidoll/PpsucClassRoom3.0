@@ -13,21 +13,16 @@ export default {
   components: {
     'building': Building,
     'box': Box
-  },
-  methods: {
-    // getChildMsg(msg) {
-    //   console.log('getChildMsg'+msg)
-    //   this.activeName = msg
-    // }
   }
 }
 </script>
 
 <style lang="less" scoped>
 .index{
+  background-color: #fff;
   height: 80vh;
-  padding: 5px;
-  padding-top: 0px;
+  margin-top: 5px;
+  margin: 5px;
   border-radius: 4px;
 }
 </style>

@@ -1,4 +1,6 @@
-const roomDayDataStore = {
+import { reactive } from 'vue'
+
+const roomDayDataStore = reactive({
   debug: false,
   state: {
     allRoomAllDayData: {},
@@ -17,6 +19,6 @@ const roomDayDataStore = {
     }
     this.state[key] = ''
   }
-}
+})
 
 export default roomDayDataStore

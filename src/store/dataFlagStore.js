@@ -1,7 +1,9 @@
-const dataFlagStore = {
+import { reactive } from 'vue'
+
+const dataFlagStore = reactive({
   debug: false,
   state: {
-    day: 'first',
+    day: '1',
     building: 'XiPei',
     time: 'am12'
   },
@@ -17,6 +19,6 @@ const dataFlagStore = {
     }
     this.state[key] = ''
   }
-}
+})
 
 export default dataFlagStore
