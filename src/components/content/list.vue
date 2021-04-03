@@ -8,6 +8,7 @@
 
 <script>
 import itemVue from './list/item.vue'
+import { reactive } from 'vue'
 
 export default {
   components: {

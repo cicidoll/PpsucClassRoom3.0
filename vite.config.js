@@ -7,7 +7,8 @@ export default defineConfig({
   alias: {
     "@": path.resolve(__dirname, "src"),
     "comps": path.resolve(__dirname, "src/components"),
-    "apis": path.resolve(__dirname, "src/apis")
+    "apis": path.resolve(__dirname, "src/apis"),
+    "store": path.resolve(__dirname, "src/store")
   },
   plugins: [vue()]
 })

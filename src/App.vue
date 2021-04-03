@@ -1,8 +1,9 @@
 <template>
   <header-vue></header-vue>
   <banner-vue></banner-vue>
-  <!-- <button type="button" @click="test()" style="height:50px;width: 50px;">test</button> -->
+  <button type="button" @click="test()" style="height:50px;width: 50px;">test</button>
   <content-vue></content-vue>
+
 </template>
 
 <script>
@@ -11,10 +12,10 @@ import HeaderVue from 'comps/header/index.vue'
 import BannerVue from 'comps/banner/index.vue'
 import ContentVue from 'comps/content/index.vue'
 
-import dataFlagStore from './store/dataFlagStore.js'
-import roomDayDataStore from './store/roomDayDataStore.js'
+import dataFlagStore from 'store/dataFlagStore.js'
+import roomDayDataStore from 'store/roomDayDataStore.js'
 
-import { reactive, watch, computed } from 'vue'
+import { reactive, watch, computed, ref } from 'vue'
 
 // 传递教室数据的api服务器网址
 const apiClassRoomUrl = 'http://api.ppsuc.production.cicidoll.top:3001/v1/classRoomData' 
@@ -25,25 +26,6 @@ export default {
   setup() {
     const dataFlagState = reactive(dataFlagStore.state)
     const roomDayDataState = reactive(roomDayDataStore.state)
-
-    const timeComputed = computed (
-      (list1, list2) => {
-        let res = []
-        let data1 = list1.slice(0)
-        let data2 = list2.slice(0)
-        while (data1.length !== 0 && data2.length !== 0) {
-          if (data1[0] === data2[0]) {
-            res.push(data1[0])
-            data1.shift()
-            data2.shift()
-          } else if (data1[0] < data2[0]) {
-            data1.shift()
-          } else if (data1[0] > data2[0]) {
-            data2.shift()
-          }
-        }
-        return res
-    })
 
     const test = ()=>{
       console.log(roomDayDataState.roomData)
@@ -102,7 +84,6 @@ export default {
     return {
       dataFlagState,
       roomDayDataState,
-      timeComputed,
       test,
       getClassRoomData,
       updateBuilding,
