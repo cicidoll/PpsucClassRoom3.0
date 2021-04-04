@@ -1,7 +1,7 @@
 <template>
   <header-vue></header-vue>
   <banner-vue></banner-vue>
-  <button type="button" @click="test()" style="height:50px;width: 50px;">test</button>
+  <button type="button" @click="test" style="height:50px;width: 50px;">test</button>
   <content-vue></content-vue>
 
 </template>
@@ -15,7 +15,7 @@ import ContentVue from 'comps/content/index.vue'
 import dataFlagStore from 'store/dataFlagStore.js'
 import roomDayDataStore from 'store/roomDayDataStore.js'
 
-import { reactive, watch, computed, ref } from 'vue'
+import { reactive, watch } from 'vue'
 
 // 传递教室数据的api服务器网址
 const apiClassRoomUrl = 'http://api.ppsuc.production.cicidoll.top:3001/v1/classRoomData' 
@@ -28,7 +28,7 @@ export default {
     const roomDayDataState = reactive(roomDayDataStore.state)
 
     const test = ()=>{
-      console.log(roomDayDataState.roomData)
+      console.log(dataFlagState.time)
     }
 
     const getClassRoomData = ()=>{
@@ -42,8 +42,7 @@ export default {
         })
         .then(() => {
           // 使用初始化定义的建筑物变量与日期变量
-          updateBuilding()
-          updateDay()
+          updateRoomData()
         })
         .catch((error) => {
           // handle error
@@ -51,34 +50,20 @@ export default {
         })
     }
 
-    const updateBuilding = ()=>{
-      roomDayDataStore.setAction(
-        'roomAllDayData',
-        roomDayDataState.allRoomAllDayData[dataFlagState.building]
-      )
-    }
+    const updateRoomData = () => {
+      let day = dataFlagState.day
+      let building = dataFlagState.building
+      let time = dataFlagState.time
 
-    const updateDay = ()=>{
-      let start = Number(dataFlagState.day) - 1
-      let result = roomDayDataState.roomData
-      for (let list in roomDayDataState.roomAllDayData) {
-        let res = []
-        for (let i = start; i < roomDayDataState.roomAllDayData[list].length; i += 5) {
-          if (roomDayDataState.roomAllDayData[list][i] !== 0) {
-            res.push(roomDayDataState.roomAllDayData[list][i])
-          }
-        }
-        
-        result[list] = res
-      }
-      roomDayDataStore.setAction('roomData', result)
+      roomDayDataStore.updateBuilding(building)
+      roomDayDataStore.updateDay(day)
+      roomDayDataStore.listComputed(time)
     }
 
     watch(
       [() => [dataFlagState.day, dataFlagState.building, dataFlagState.time]],
       () => {
-        updateBuilding()
-        updateDay()
+        updateRoomData ()
     })
 
     return {
@@ -86,8 +71,7 @@ export default {
       roomDayDataState,
       test,
       getClassRoomData,
-      updateBuilding,
-      updateDay
+      updateRoomData
     }
   },
   components: {
