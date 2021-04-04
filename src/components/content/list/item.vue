@@ -1,12 +1,17 @@
 <template>
   <div class="item" @click="dialogVisible = true">
-    <el-dialog
-      title="提示"
-      v-model="dialogVisible"
-      width="30%"
-      :before-close="handleClose">
-      <span>这是一段信息</span>
-    </el-dialog>
+    <div class="content">
+      <el-dialog
+        title="详细"
+        v-model="dialogVisible"
+        width="80%">
+        <span>调课信息：详细······</span><br>
+        <span>调课信息：详细······</span>
+      </el-dialog>
+      <span style="text-align:center;">{{itemData}}</span>
+      <span>调课信息：x条</span>
+      <span>停课信息：x条</span>
+    </div>
   </div>
 </template>
 
@@ -14,34 +19,49 @@
 import {ref} from 'vue'
 
 export default {
-  
+  props: ['itemData'],
   setup() {
     let dialogVisible = ref(false)
 
     return {
       dialogVisible
     }
-  },
-  methods: {
-    handleClose(done) {
-      this.$confirm('确认关闭？')
-        .then(_ => {
-          done();
-        })
-        .catch(_ => {});
-      }
   }
 }
 </script>
 
 <style lang="less" scoped>
 .item{
-  background-color: pink;
-  height: 0;
-  width: calc(33% - 10px);
-  padding-bottom: calc(33% - 10px);
-  margin: 5px;
-  border-radius: 4px;
-  float: left;
+  
+  // height: 0;
+  // width: calc(33% - 10px);
+  // height: 80px;
+  // width: 80px;
+  // padding-bottom: calc(33% - 10px);
+  width: calc(50% - 10px);
+  padding: 5px;
+  font-size: 8px;
+
+  .content{
+    // height: 70px;
+    // width: 70px;
+    
+    border-radius: 4px;
+    background-color: #267aec;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  // float: left;
+  // position:absolute;
+  // left:0;
+  // top:0;
+  // right:0;
+  // bottom:0;
+}
+.el-dialog{
+  height: 50vh;
 }
 </style>

@@ -34,7 +34,6 @@ export default {
 
 <style lang="less">
 .boxTabs{
-  width: 113px;
   background-color: #fff;
   border-radius: 4px;
   .el-tabs.el-tabs--left{

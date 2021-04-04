@@ -1,7 +1,6 @@
 <template>
   <header-vue></header-vue>
   <banner-vue></banner-vue>
-  <button type="button" @click="test" style="height:50px;width: 50px;">test</button>
   <content-vue></content-vue>
 
 </template>
@@ -26,10 +25,6 @@ export default {
   setup() {
     const dataFlagState = reactive(dataFlagStore.state)
     const roomDayDataState = reactive(roomDayDataStore.state)
-
-    const test = ()=>{
-      console.log(dataFlagState.time)
-    }
 
     const getClassRoomData = ()=>{
       // 在axios中使用function () {}的写法，会导致this指向问题出错。
@@ -69,7 +64,6 @@ export default {
     return {
       dataFlagState,
       roomDayDataState,
-      test,
       getClassRoomData,
       updateRoomData
     }

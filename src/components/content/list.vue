@@ -1,12 +1,14 @@
 <template>
   <div class="list">
-    {{ roomDayDataState.timeData }}
-    <!-- {{timeData}} -->
-    <!-- <button @click="test">timeData</button> -->
-    <button @click="test1">roomDayDataStore</button>
-    <item-vue></item-vue>
-    <item-vue></item-vue>
-    <item-vue></item-vue>
+    <!-- <el-container>
+      <el-main> -->
+        <item-vue v-for="(item, index) in roomDayDataState.timeData"
+          :key="index"
+          :itemData="item">
+        </item-vue>
+      <!-- </el-main>
+    </el-container> -->
+
   </div>
 </template>
 
@@ -14,7 +16,7 @@
 import roomDayDataStore from 'store/roomDayDataStore.js'
 import dataFlagStore from 'store/dataFlagStore.js'
 import itemVue from './list/item.vue'
-import { reactive, ref, watch } from 'vue'
+import { reactive } from 'vue'
 
 export default {
   setup () {
@@ -35,24 +37,21 @@ export default {
   },
   components: {
     'item-vue': itemVue
-  },
-  methods: {
-    // test() {
-    //   console.log(this.timeData)
-    // },
-    test1() {
-      console.log(roomDayDataStore.state.timeData)
-    }
-  },
-  mounted () {
-    // this.timeData = this.roomDayDataState.timeData
   }
 }
 </script>
 
 <style lang="less" scoped>
 .list{
-  height: calc(100% - 40px);
-  width: calc(100vw - 10px - 40px);
+  width: 100%;
+  display: flex;
+  flex-flow: wrap;
+  // flex: 1 1 auto;
+  justify-content: space-between;
+  align-items: space-between;
+  // height: calc(100% - 40px);
+  // width: calc(100vw - 10px - 40px);
+  // overflow:hidden;
+  // overflow-y: scroll;
 }
 </style>

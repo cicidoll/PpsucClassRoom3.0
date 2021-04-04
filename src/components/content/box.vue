@@ -2,6 +2,7 @@
   <div class="box">
     <left-tabs></left-tabs>
     <list></list>
+    <!-- <div style=" clear:both; "></div> -->
   </div>
 </template>
 
@@ -20,6 +21,9 @@ export default {
 <style lang="less" scoped>
 .box{
   display: flex;
-  height: calc(100% - 40px);
+  // height: calc(100% - 40px);
+  // overflow-y: scroll;
+  // overflow:hidden;
+  // overflow-y: auto;
 }
 </style>
