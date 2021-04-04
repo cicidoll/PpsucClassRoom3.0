@@ -20,4 +20,46 @@ div {
   padding-bottom: 20%; /* 让div的高等于宽 */
   border-radius: 50%;
 }
-此时将padding-top/padding-bottom设置为百分比时，是基于父元素宽度，正好和width相等；在使用border-radius=50%，就实现了自适应的圆形。
+此时将padding-top/padding-bottom设置为百分比时，是基于父元素宽度，正好和width相等；在使用border-radius=50%，就实现了自适应的圆形。  
+
+4、在setup中，导入store：
+'''
+  setup () {
+    const dataFlagState = reactive(dataFlagStore.state)
+    const roomDayDataState = reactive(roomDayDataStore.state)
+
+    return {
+      dataFlagState,
+      roomDayDataState
+    }
+'''  
+视图中{{roomDayDataState.timeData}},能够获取到数据  
+  
+但同样是在setup中，导入store：
+'''
+  setup () {
+    const dataFlagState = reactive(dataFlagStore.state)
+    const roomDayDataState = reactive(roomDayDataStore.state)
+    let timeData = reactive(roomDayDataStore.state.timeData)
+
+    return {
+      dataFlagState,
+      roomDayDataState,
+      timeData
+    }
+'''  
+视图中{{timeData}},却获取不到数据  
+尝试过以下方法，均失败：  
+
+'let timeData = ref(roomDayDataStore.state.timeData)'
+'let timeData = ref(roomDayDataState.timeData)'
+'''
+// 增加watch，使其实时更新
+watch(
+  [() => [dataFlagState.day, dataFlagState.building, dataFlagState.time, roomDayDataState.timeData]],
+  () => {
+    // 确实watch到了，但是数据没更新
+    console.log('watch')
+    timeData = roomDayDataState.timeData
+})
+'''

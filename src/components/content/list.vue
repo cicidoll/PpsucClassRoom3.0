@@ -1,6 +1,9 @@
 <template>
   <div class="list">
-    <button @click="test">list</button>
+    {{ roomDayDataState.timeData }}
+    <!-- {{timeData}} -->
+    <!-- <button @click="test">timeData</button> -->
+    <button @click="test1">roomDayDataStore</button>
     <item-vue></item-vue>
     <item-vue></item-vue>
     <item-vue></item-vue>
@@ -8,30 +11,42 @@
 </template>
 
 <script>
+import roomDayDataStore from 'store/roomDayDataStore.js'
+import dataFlagStore from 'store/dataFlagStore.js'
 import itemVue from './list/item.vue'
-import { reactive } from 'vue'
+import { reactive, ref, watch } from 'vue'
 
 export default {
-  props:['testData'],
-  data () {
+  setup () {
+    const dataFlagState = reactive(dataFlagStore.state)
+    const roomDayDataState = reactive(roomDayDataStore.state)
+
+    // watch(
+    //   [() => [dataFlagState.day, dataFlagState.building, dataFlagState.time, roomDayDataState.timeData]],
+    //   () => {
+    //     console.log('watch')
+    //     timeData = roomDayDataState.timeData
+    // })
+
     return {
-      roomData: this.testData
+      dataFlagState,
+      roomDayDataState
     }
   },
   components: {
     'item-vue': itemVue
   },
   methods: {
-    test() {
-      console.log(this.testData)
+    // test() {
+    //   console.log(this.timeData)
+    // },
+    test1() {
+      console.log(roomDayDataStore.state.timeData)
     }
   },
-  watch: {
-   roomData(newV,oldV) {
-     // do something
-     console.log(newV)
-   } 
-}
+  mounted () {
+    // this.timeData = this.roomDayDataState.timeData
+  }
 }
 </script>
 

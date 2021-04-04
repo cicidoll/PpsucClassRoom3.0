@@ -73,8 +73,7 @@ const roomDayDataStore = reactive({
       res = this.timeComputed(this.state.roomData.pm12, this.state.roomData.pm34)
       this.setAction('timeData', res)
     }
-
-    console.log(this.state.timeData)
+    // console.log(this.state.timeData)
   }
 })
 
