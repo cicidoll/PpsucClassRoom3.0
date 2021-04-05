@@ -1,7 +1,6 @@
 <template>
   <header-vue></header-vue>
   <banner-vue></banner-vue>
-  {{mobilizeBorrowDataState.MobilizeRoom}}
   <content-vue></content-vue>
 </template>
 
