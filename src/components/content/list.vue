@@ -1,37 +1,24 @@
 <template>
-  <div class="list">
-    <!-- <el-container>
-      <el-main> -->
-        <item-vue v-for="(item, index) in roomDayDataState.timeData"
-          :key="index"
-          :itemData="item">
-        </item-vue>
-      <!-- </el-main>
-    </el-container> -->
 
+  <div class="list">
+    <item-vue v-for="(item, index) in roomDayDataState.timeData"
+      :key="index"
+      :itemData="String(item)">
+    </item-vue>
   </div>
+
 </template>
 
 <script>
 import roomDayDataStore from 'store/roomDayDataStore.js'
-import dataFlagStore from 'store/dataFlagStore.js'
 import itemVue from './list/item.vue'
 import { reactive } from 'vue'
 
 export default {
   setup () {
-    const dataFlagState = reactive(dataFlagStore.state)
-    const roomDayDataState = reactive(roomDayDataStore.state)
-
-    // watch(
-    //   [() => [dataFlagState.day, dataFlagState.building, dataFlagState.time, roomDayDataState.timeData]],
-    //   () => {
-    //     console.log('watch')
-    //     timeData = roomDayDataState.timeData
-    // })
+    let roomDayDataState = reactive(roomDayDataStore.state)
 
     return {
-      dataFlagState,
       roomDayDataState
     }
   },

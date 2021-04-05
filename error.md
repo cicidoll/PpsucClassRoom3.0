@@ -62,4 +62,6 @@ watch(
     console.log('watch')
     timeData = roomDayDataState.timeData
 })
-'''
+'''  
+
+【注：可能是错误使用了const或者是let的缘故，但是暂时没有精力去复现】

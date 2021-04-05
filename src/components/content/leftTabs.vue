@@ -13,11 +13,12 @@
 
 <script>
 import dataFlagStore from '../../store/dataFlagStore.js'
+import { reactive, ref } from 'vue'
 
 export default {
   setup() {
-    const tabPosition = 'left'
-    const date = dataFlagStore.state.time
+    let tabPosition = 'left'
+    let date = ref(dataFlagStore.state.time)
 
     return {
       tabPosition,

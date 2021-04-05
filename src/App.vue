@@ -1,8 +1,8 @@
 <template>
   <header-vue></header-vue>
   <banner-vue></banner-vue>
+  {{mobilizeBorrowDataState.MobilizeRoom}}
   <content-vue></content-vue>
-
 </template>
 
 <script>
@@ -13,6 +13,7 @@ import ContentVue from 'comps/content/index.vue'
 
 import dataFlagStore from 'store/dataFlagStore.js'
 import roomDayDataStore from 'store/roomDayDataStore.js'
+import mobilizeBorrowDataStore from 'store/mobilizeBorrowDataStore.js'
 
 import { reactive, watch } from 'vue'
 
@@ -25,6 +26,7 @@ export default {
   setup() {
     const dataFlagState = reactive(dataFlagStore.state)
     const roomDayDataState = reactive(roomDayDataStore.state)
+    const mobilizeBorrowDataState = reactive(mobilizeBorrowDataStore.state)
 
     const getClassRoomData = ()=>{
       // 在axios中使用function () {}的写法，会导致this指向问题出错。
@@ -55,17 +57,50 @@ export default {
       roomDayDataStore.listComputed(time)
     }
 
+    const updateMobilizeBorrowData = ()=>{
+      let building = dataFlagState.building
+
+      mobilizeBorrowDataStore.updateBuilding(building)
+    }
+
     watch(
       [() => [dataFlagState.day, dataFlagState.building, dataFlagState.time]],
       () => {
         updateRoomData ()
     })
 
+    watch(
+      () => dataFlagState.building,
+      () => {
+        updateMobilizeBorrowData ()
+    })
+
+    const getMobilizeBorrowData = ()=>{
+      // 在axios中使用function () {}的写法，会导致this指向问题出错。
+      // 解决方法：使用ES6箭头函数
+      axios.get(mobilizeBorrowUrl)
+        .then((response) => {
+          // handle success
+          mobilizeBorrowDataStore.setAction('allBuildingMobilizeBorrowRoom', response['data'])
+          mobilizeBorrowDataStore.setAction('buildingMobilizeRoom', mobilizeBorrowDataState.allBuildingMobilizeBorrowRoom['mobilize'])
+          mobilizeBorrowDataStore.setAction('buildingBorrowRoom', mobilizeBorrowDataState.allBuildingMobilizeBorrowRoom['borrow'])
+        }).then(()=>{
+          updateMobilizeBorrowData()
+        })
+        .catch((error) => {
+          // handle error
+          console.log(error)
+        })
+    }
+
     return {
       dataFlagState,
       roomDayDataState,
+      mobilizeBorrowDataState,
       getClassRoomData,
-      updateRoomData
+      updateRoomData,
+      updateMobilizeBorrowData,
+      getMobilizeBorrowData
     }
   },
   components: {
@@ -75,6 +110,7 @@ export default {
   },
   created () {
     this.getClassRoomData()
+    this.getMobilizeBorrowData()
   }
 }
 </script>

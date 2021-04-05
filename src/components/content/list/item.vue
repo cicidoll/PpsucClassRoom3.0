@@ -2,29 +2,52 @@
   <div class="item" @click="dialogVisible = true">
     <div class="content">
       <el-dialog
-        title="详细"
+        title="具体安排"
         v-model="dialogVisible"
         width="80%">
-        <span>调课信息：详细······</span><br>
-        <span>调课信息：详细······</span>
+
+        <span style="text-align: center;">调停课信息：</span>
+        <el-table stripe :data="mobilizeBorrowDataState.MobilizeRoom[itemData]">
+          <el-table-column prop="className" label="教室名"></el-table-column>
+          <el-table-column prop="classes" label="调课类别"></el-table-column>
+          <el-table-column prop="oldDate" label="原上课日期"></el-table-column>
+          <el-table-column prop="oldTimes" label="原节次"></el-table-column>
+          <el-table-column prop="oldRoom" label="原教室"></el-table-column>
+          <el-table-column prop="newDate" label="现上课日期"></el-table-column>
+          <el-table-column prop="newTimes" label="现节次"></el-table-column>
+          <el-table-column prop="newRoom" label="现教室"></el-table-column>
+        </el-table>
+
+        <span style="text-align: center;">借用教室信息：</span>
+        <el-table stripe :data="mobilizeBorrowDataState.BorrowRoom[itemData]">
+          <el-table-column  prop="borrowDate" label="借用日期"></el-table-column>
+          <el-table-column  prop="borrowTime" label="借用时间"></el-table-column>
+          <el-table-column  prop="borrowReason" label="借用事由"></el-table-column>
+        </el-table>
       </el-dialog>
-      <span style="text-align:center;">{{itemData}}</span>
-      <span>调课信息：x条</span>
-      <span>停课信息：x条</span>
+      <span class="itemData">{{itemData}}</span>
+      <span>调停课：{{ mobilizeBorrowDataState.MobilizeRoom[itemData].length  || 0 }}条</span>
+      <span>借用教室：{{ mobilizeBorrowDataState.BorrowRoom[itemData].length  || 0 }}条</span> 
     </div>
   </div>
 </template>
 
 <script>
-import {ref} from 'vue'
+import mobilizeBorrowDataStore from 'store/mobilizeBorrowDataStore.js'
+
+import { reactive, ref } from 'vue'
 
 export default {
   props: ['itemData'],
-  setup() {
+  setup(props) {
     let dialogVisible = ref(false)
+    // let temp = props.itemData
+    let mobilizeBorrowDataState = reactive(mobilizeBorrowDataStore.state)
 
     return {
-      dialogVisible
+      dialogVisible,
+      mobilizeBorrowDataState,
+      // temp
     }
   }
 }
@@ -41,25 +64,19 @@ export default {
   width: calc(50% - 10px);
   padding: 5px;
   font-size: 8px;
-
+  text-align:center;
   .content{
-    // height: 70px;
-    // width: 70px;
-    
     border-radius: 4px;
     background-color: #267aec;
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
-  }
 
-  // float: left;
-  // position:absolute;
-  // left:0;
-  // top:0;
-  // right:0;
-  // bottom:0;
+    .itemData{
+      font-size: 20px;
+    }
+  }
 }
 .el-dialog{
   height: 50vh;
